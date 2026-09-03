@@ -31,3 +31,11 @@ fun textoParaValor(texto: String): Double? {
     if (limpo.isEmpty()) return null
     return limpo.toDoubleOrNull()
 }
+
+/**
+ * Caminho inverso de [textoParaValor]: transforma o valor guardado em texto editavel
+ * no formato brasileiro (1234.5 -> "1234,50"). Valor zerado vira texto vazio para o
+ * campo aparecer com o placeholder em vez de "0,00".
+ */
+fun valorParaTexto(valor: Double): String =
+    if (valor <= 0.0) "" else String.format(LOCALE_BR, "%.2f", valor)

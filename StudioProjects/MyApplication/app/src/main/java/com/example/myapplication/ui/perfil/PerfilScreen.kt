@@ -47,11 +47,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.myapplication.ui.components.CartaoSecao
-import com.example.myapplication.ui.components.ResumoValor
-import com.example.myapplication.util.formatarMoeda
+import com.example.myapplication.ui.components.CampoDinheiro
 
 /**
- * Aba de Perfil: o usuario troca o nome e escolhe uma foto da galeria.
+ * Aba de Perfil: o usuario troca o nome, o salario mensal e escolhe uma foto da galeria.
  * Nao e um cadastro nem login, e so a identificacao simples usada no dashboard.
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,20 +125,25 @@ fun PerfilScreen(viewModel: PerfilViewModel = viewModel(factory = PerfilViewMode
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
+                CampoDinheiro(
+                    valor = estado.salarioTexto,
+                    aoMudar = viewModel::aoMudarSalario,
+                    rotulo = "Salario mensal",
+                    erro = estado.erroSalario,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "Mudar o salario recalcula na hora os percentuais do dashboard.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(modifier = Modifier.height(12.dp))
                 Button(
-                    onClick = { viewModel.salvarNome() },
+                    onClick = { viewModel.salvar() },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Salvar nome")
+                    Text("Salvar alteracoes")
                 }
-            }
-
-            CartaoSecao(titulo = "Salario cadastrado") {
-                ResumoValor(
-                    rotulo = "Salario mensal",
-                    valor = formatarMoeda(estado.salarioMensal),
-                    detalhe = "Base dos percentuais do dashboard"
-                )
             }
         }
     }

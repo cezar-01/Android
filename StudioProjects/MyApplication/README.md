@@ -29,9 +29,10 @@ que o usuário enxergue rapidamente sua situação financeira e tome decisões m
 5. **Detalhe da meta** (`ui/metas`) — tela de uma meta específica, com anel de
    progresso, resumo de valores (guardado / falta / alvo), botão para guardar ou
    retirar dinheiro e histórico de movimentações.
-6. **Perfil** (`ui/perfil`) — identificação simples do usuário: troca o nome e escolhe
-   uma foto da galeria pelo Photo Picker do Android (nenhuma permissão de armazenamento
-   é necessária). Não é cadastro nem login; a foto e o nome ficam só no aparelho.
+6. **Perfil** (`ui/perfil`) — identificação simples do usuário: troca o nome, o salário
+   mensal e escolhe uma foto da galeria pelo Photo Picker do Android (nenhuma permissão
+   de armazenamento é necessária). Alterar o salário aqui recalcula na hora os percentuais
+   do dashboard. Não é cadastro nem login; os dados ficam só no aparelho.
 
 ## As 3 divisões de gastos
 

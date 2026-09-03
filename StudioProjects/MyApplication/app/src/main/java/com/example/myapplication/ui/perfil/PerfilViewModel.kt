@@ -7,24 +7,27 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.myapplication.data.repository.FinancasRepository
 import com.example.myapplication.di.AppContainer
+import com.example.myapplication.util.textoParaValor
+import com.example.myapplication.util.valorParaTexto
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class PerfilUiState(
-    /** Rascunho do nome enquanto o usuario digita (so vai para o repositorio ao salvar). */
+    /** Rascunhos editados na tela; so vao para o repositorio quando o usuario salva. */
     val nome: String = "",
+    val salarioTexto: String = "",
     val fotoUri: String? = null,
-    val salarioMensal: Double = 0.0,
     val erroNome: String? = null,
+    val erroSalario: String? = null,
     /** Mensagem de confirmacao mostrada uma vez e depois limpa pela tela. */
     val mensagem: String? = null
 )
 
 /**
- * ViewModel da aba Perfil. Mantem o nome como rascunho local (so grava quando o usuario
- * clica em Salvar) e reflete a foto direto do repositorio, porque a troca de foto e imediata.
+ * ViewModel da aba Perfil. Nome e salario sao rascunhos locais (so gravam no botao Salvar),
+ * enquanto a foto vem direto do repositorio, porque a troca de foto e imediata.
  */
 class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel() {
 
@@ -32,21 +35,19 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
     val uiState = _uiState.asStateFlow()
 
     init {
-        // Nome e salario iniciais vem do que ja foi cadastrado na primeira tela.
+        // Valores iniciais vem do que ja foi cadastrado na primeira tela do app.
         val perfilAtual = repositorio.perfil.value
         _uiState.update {
             it.copy(
                 nome = perfilAtual.nome,
-                fotoUri = perfilAtual.fotoUri,
-                salarioMensal = perfilAtual.salarioMensal
+                salarioTexto = valorParaTexto(perfilAtual.salarioMensal),
+                fotoUri = perfilAtual.fotoUri
             )
         }
-        // A foto e o salario continuam sendo observados para a tela nunca ficar desatualizada.
+        // A foto continua sendo observada para a tela nunca ficar desatualizada.
         viewModelScope.launch {
             repositorio.perfil.collect { perfil ->
-                _uiState.update {
-                    it.copy(fotoUri = perfil.fotoUri, salarioMensal = perfil.salarioMensal)
-                }
+                _uiState.update { it.copy(fotoUri = perfil.fotoUri) }
             }
         }
     }
@@ -55,15 +56,35 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
         _uiState.update { it.copy(nome = valor, erroNome = null) }
     }
 
-    fun salvarNome() {
+    fun aoMudarSalario(valor: String) {
+        _uiState.update { it.copy(salarioTexto = valor, erroSalario = null) }
+    }
+
+    /**
+     * Grava nome e salario de uma vez. Usa salvarPerfil(), que faz copy() no perfil e
+     * por isso preserva a foto ja escolhida.
+     */
+    fun salvar() {
         val nome = _uiState.value.nome.trim()
-        if (nome.isBlank()) {
-            _uiState.update { it.copy(erroNome = "Digite seu nome") }
+        val salario = textoParaValor(_uiState.value.salarioTexto)
+
+        val erroNome = if (nome.isBlank()) "Digite seu nome" else null
+        val erroSalario = when {
+            salario == null -> "Valor invalido"
+            salario <= 0.0 -> "O salario precisa ser maior que zero"
+            else -> null
+        }
+
+        if (erroNome != null || erroSalario != null) {
+            _uiState.update { it.copy(erroNome = erroNome, erroSalario = erroSalario) }
             return
         }
+
         viewModelScope.launch {
-            repositorio.atualizarNome(nome)
-            _uiState.update { it.copy(erroNome = null, mensagem = "Nome atualizado") }
+            repositorio.salvarPerfil(nome, salario!!)
+            _uiState.update {
+                it.copy(erroNome = null, erroSalario = null, mensagem = "Dados atualizados")
+            }
         }
     }
 
