@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculadora de Gastos</string>
+    <string name="titulo_gastos">Meus gastos</string>
+    <string name="titulo_dashboard">Dashboard</string>
+    <string name="titulo_metas">Minhas metas</string>
+    <string name="acao_comecar">Começar</string>
+    <string name="mensagem_boas_vindas">Vamos começar! O salário é a base de todos os seus cálculos.</string>
+    <string name="meta_concluida">Meta concluída! Você conseguiu.</string>
+</resources>

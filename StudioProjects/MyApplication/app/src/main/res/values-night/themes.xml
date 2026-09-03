@@ -1,0 +1,7 @@
+<resources>
+    <!-- Variante noturna: mesmo nome de estilo, cores escuras. -->
+    <style name="Theme.CalculadoraGastos" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/preto</item>
+        <item name="android:windowBackground">@color/preto</item>
+    </style>
+</resources>

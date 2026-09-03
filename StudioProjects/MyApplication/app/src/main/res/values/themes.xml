@@ -1,0 +1,7 @@
+<resources>
+    <!-- Tema base do app, 100% Compose: sem AppCompat/Material Components/Material3 XML. -->
+    <style name="Theme.CalculadoraGastos" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/verde_escuro</item>
+        <item name="android:windowBackground">@color/areia_clara</item>
+    </style>
+</resources>
