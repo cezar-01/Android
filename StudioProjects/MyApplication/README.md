@@ -12,7 +12,7 @@ simples — cadastrar o salário, lançar os gastos já classificados por tipo, 
 tudo em um dashboard visual e guardar dinheiro para objetivos concretos (metas) — para
 que o usuário enxergue rapidamente sua situação financeira e tome decisões melhores.
 
-## As 5 telas
+## As 6 telas
 
 1. **Salário** (`ui/salario`) — tela de entrada/onboarding. O usuário informa nome e
    salário mensal, que servem de base para todos os cálculos de percentual do app.
@@ -29,6 +29,9 @@ que o usuário enxergue rapidamente sua situação financeira e tome decisões m
 5. **Detalhe da meta** (`ui/metas`) — tela de uma meta específica, com anel de
    progresso, resumo de valores (guardado / falta / alvo), botão para guardar ou
    retirar dinheiro e histórico de movimentações.
+6. **Perfil** (`ui/perfil`) — identificação simples do usuário: troca o nome e escolhe
+   uma foto da galeria pelo Photo Picker do Android (nenhuma permissão de armazenamento
+   é necessária). Não é cadastro nem login; a foto e o nome ficam só no aparelho.
 
 ## As 3 divisões de gastos
 
@@ -80,7 +83,8 @@ com/example/myapplication/
 │   ├── salario/       # tela 1: cadastro de nome e salário
 │   ├── gastos/        # tela 2: lançamento e listagem de gastos por divisão
 │   ├── dashboard/      # tela 3: resumo visual do mês
-│   └── metas/         # telas 4 e 5: lista de metas e detalhe de uma meta
+│   ├── metas/         # telas 4 e 5: lista de metas e detalhe de uma meta
+│   └── perfil/        # tela 6: nome e foto do usuario
 └── util/               # funções utilitárias (formatação de moeda, data, percentual)
 ```
 

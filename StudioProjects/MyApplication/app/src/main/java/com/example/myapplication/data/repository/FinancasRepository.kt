@@ -30,6 +30,12 @@ interface FinancasRepository {
 
     suspend fun salvarPerfil(nome: String, salarioMensal: Double)
 
+    /** Troca so o nome, sem mexer no salario nem na foto (usado na aba Perfil). */
+    suspend fun atualizarNome(nome: String)
+
+    /** Define ou remove (null) a foto de perfil. */
+    suspend fun atualizarFotoPerfil(uri: String?)
+
     suspend fun adicionarSubcategoria(nome: String, tipo: TipoGasto): Subcategoria
     suspend fun removerSubcategoria(id: String)
 

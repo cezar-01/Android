@@ -70,7 +70,9 @@ data class Deposito(
 /** Dados que o usuario informa na primeira tela. */
 data class PerfilFinanceiro(
     val nome: String = "",
-    val salarioMensal: Double = 0.0
+    val salarioMensal: Double = 0.0,
+    /** Uri da foto escolhida pelo usuario (content://...). Nula = usa o avatar padrao. */
+    val fotoUri: String? = null
 ) {
     val configurado: Boolean get() = salarioMensal > 0.0
 }

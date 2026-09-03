@@ -61,6 +61,9 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.navigation:navigation-compose:2.7.4")
 
+    // Carrega a foto de perfil escolhida pelo usuario a partir de uma Uri
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

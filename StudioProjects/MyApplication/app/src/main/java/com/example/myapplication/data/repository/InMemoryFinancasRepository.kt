@@ -34,7 +34,16 @@ class InMemoryFinancasRepository : FinancasRepository {
     override val depositos: StateFlow<List<Deposito>> = _depositos.asStateFlow()
 
     override suspend fun salvarPerfil(nome: String, salarioMensal: Double) {
-        _perfil.value = PerfilFinanceiro(nome = nome.trim(), salarioMensal = salarioMensal)
+        // copy() para nao apagar a foto de perfil ja escolhida.
+        _perfil.update { it.copy(nome = nome.trim(), salarioMensal = salarioMensal) }
+    }
+
+    override suspend fun atualizarNome(nome: String) {
+        _perfil.update { it.copy(nome = nome.trim()) }
+    }
+
+    override suspend fun atualizarFotoPerfil(uri: String?) {
+        _perfil.update { it.copy(fotoUri = uri) }
     }
 
     override suspend fun adicionarSubcategoria(nome: String, tipo: TipoGasto): Subcategoria {

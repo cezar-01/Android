@@ -14,6 +14,9 @@ object Rotas {
     // Tela com a lista de metas (cofrinho)
     const val METAS = "metas"
 
+    // Tela de perfil: troca o nome e a foto do usuario
+    const val PERFIL = "perfil"
+
     // Tela de detalhe de uma meta especifica, recebe o id da meta como argumento
     const val META_DETALHE = "meta_detalhe/{metaId}"
 

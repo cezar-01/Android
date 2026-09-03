@@ -17,6 +17,7 @@ import com.example.myapplication.ui.dashboard.DashboardScreen
 import com.example.myapplication.ui.gastos.GastosScreen
 import com.example.myapplication.ui.metas.MetaDetalheScreen
 import com.example.myapplication.ui.metas.MetasScreen
+import com.example.myapplication.ui.perfil.PerfilScreen
 import com.example.myapplication.ui.salario.SalarioScreen
 
 // Ponto central de navegacao do app: decide quais telas existem e quando a barra
@@ -31,7 +32,8 @@ fun AppNavHost() {
     val rotaAtual = backStackEntry?.destination?.route
     val mostrarBarraInferior = rotaAtual == Rotas.GASTOS ||
         rotaAtual == Rotas.DASHBOARD ||
-        rotaAtual == Rotas.METAS
+        rotaAtual == Rotas.METAS ||
+        rotaAtual == Rotas.PERFIL
 
     Scaffold(
         bottomBar = {
@@ -56,6 +58,9 @@ fun AppNavHost() {
                 }
                 composable(Rotas.DASHBOARD) {
                     DashboardScreen()
+                }
+                composable(Rotas.PERFIL) {
+                    PerfilScreen()
                 }
                 composable(Rotas.METAS) {
                     MetasScreen(

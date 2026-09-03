@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.material.icons.filled.Receipt
 import androidx.compose.material.icons.filled.Savings
@@ -18,11 +19,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 // Modelo simples de item da barra inferior
 private data class ItemNavegacao(val rota: String, val rotulo: String, val icone: ImageVector)
 
-// Lista fixa com as 3 telas principais do app
+// Lista fixa com as 4 telas principais do app
 private val itensNavegacao = listOf(
     ItemNavegacao(Rotas.GASTOS, "Gastos", Icons.Default.Receipt),
     ItemNavegacao(Rotas.DASHBOARD, "Dashboard", Icons.Default.PieChart),
-    ItemNavegacao(Rotas.METAS, "Metas", Icons.Default.Savings)
+    ItemNavegacao(Rotas.METAS, "Metas", Icons.Default.Savings),
+    ItemNavegacao(Rotas.PERFIL, "Perfil", Icons.Default.Person)
 )
 
 // Barra inferior stateless: apenas le e navega usando o navController recebido
