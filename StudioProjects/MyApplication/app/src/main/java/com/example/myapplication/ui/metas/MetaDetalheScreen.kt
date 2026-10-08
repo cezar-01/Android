@@ -42,7 +42,6 @@ import com.example.myapplication.util.formatarData
 import com.example.myapplication.util.formatarMoeda
 import com.example.myapplication.util.formatarPercentual
 
-// Tela do "porquinho": detalhe de uma meta, com progresso e historico de movimentacoes.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MetaDetalheScreen(
@@ -84,7 +83,6 @@ fun MetaDetalheScreen(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Porquinho: anel de progresso com o quanto ja foi guardado.
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally

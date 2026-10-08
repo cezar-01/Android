@@ -27,8 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.ui.components.CampoDinheiro
 
-// Primeira tela do app: aqui o usuario informa nome e salario para configurar o perfil.
-// Nao tem barra inferior nem TopAppBar, pois ainda nao existe navegacao "de verdade".
 @Composable
 fun SalarioScreen(
     aoConcluir: () -> Unit,
@@ -36,7 +34,6 @@ fun SalarioScreen(
 ) {
     val estado by viewModel.uiState.collectAsState()
 
-    // Quando o perfil for salvo com sucesso, avanca para a proxima tela.
     LaunchedEffect(estado.salvo) {
         if (estado.salvo) {
             aoConcluir()

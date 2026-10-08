@@ -5,8 +5,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Tipografia customizada do app. Estilos nao mencionados aqui herdam do
-// Typography() padrao do Material3.
 val Tipografia = Typography(
     titleLarge = TextStyle(
         fontWeight = FontWeight.Bold,

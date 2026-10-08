@@ -42,8 +42,6 @@ import com.example.myapplication.ui.theme.VerdePositivo
 import com.example.myapplication.util.formatarMoeda
 import com.example.myapplication.util.formatarPercentual
 
-// Tela de metas: mostra o cofrinho geral e cada meta individual, com acoes de
-// criar, guardar/retirar dinheiro e remover.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MetasScreen(

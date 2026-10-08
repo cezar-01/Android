@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-// Barra de progresso arredondada, com animacao suave ao mudar o valor.
 @Composable
 fun BarraProgresso(
     progresso: Float,

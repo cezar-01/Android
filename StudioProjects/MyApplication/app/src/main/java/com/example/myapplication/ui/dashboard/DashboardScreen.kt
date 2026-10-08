@@ -37,8 +37,6 @@ import com.example.myapplication.ui.theme.corDoTipo
 import com.example.myapplication.util.formatarMoeda
 import com.example.myapplication.util.formatarPercentual
 
-// Tela principal com a visao geral das financas: resumo, comprometimento do salario,
-// graficos por categoria/subcategoria e o total guardado em metas.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = DashboardViewModel.Factory)) {
@@ -54,11 +52,9 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // Saudacao com o nome, se cadastrado
             val saudacao = if (estado.nome.isNotBlank()) "Ola, ${estado.nome}!" else "Resumo financeiro"
             Text(text = saudacao, style = MaterialTheme.typography.headlineSmall)
 
-            // Bloco 1: resumo do mes (salario, total gasto, saldo)
             CartaoSecao(titulo = "Resumo do mes") {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -83,7 +79,6 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                 }
             }
 
-            // Bloco 2: quanto do salario ja foi comprometido com gastos
             CartaoSecao(titulo = "Quanto do salario ja foi comprometido") {
                 if (estado.salario <= 0) {
                     Text("Cadastre seu salario para ver essa relacao.")
@@ -104,14 +99,12 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
             }
 
             if (!estado.temGastos) {
-                // Sem gastos cadastrados: nao ha o que exibir nos graficos
                 EstadoVazio(
                     icone = Icons.Default.PieChart,
                     titulo = "Sem gastos ainda",
                     mensagem = "Cadastre gastos na aba Gastos para ver os graficos aqui."
                 )
             } else {
-                // Bloco 3: gastos por categoria (pizza + legenda)
                 CartaoSecao(titulo = "Gastos por categoria") {
                     val fatias = estado.porTipo
                         .filter { it.total > 0 }
@@ -129,7 +122,6 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                     }
                     LegendaGrafico(fatias = fatias)
 
-                    // Percentual do salario comprometido por cada tipo de gasto
                     estado.porTipo.forEach { resumo ->
                         Text(
                             text = "${resumo.tipo.rotulo} consomem ${formatarPercentual(resumo.percentualDoSalario)} do salario",
@@ -138,7 +130,6 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                     }
                 }
 
-                // Bloco 4: maiores subdivisoes (barras horizontais)
                 CartaoSecao(titulo = "Maiores subdivisoes") {
                     val barras = estado.topSubcategorias.mapIndexed { i, subcategoria ->
                         BarraGrafico(
@@ -151,7 +142,6 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                 }
             }
 
-            // Bloco 5: total guardado no cofrinho das metas
             CartaoSecao(titulo = "Guardado em metas") {
                 ResumoValor(
                     rotulo = "Total no cofrinho",

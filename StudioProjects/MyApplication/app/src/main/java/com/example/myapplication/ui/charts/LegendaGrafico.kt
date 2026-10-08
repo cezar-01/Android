@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import com.example.myapplication.util.formatarMoeda
 import com.example.myapplication.util.formatarPercentual
 
-// Legenda de um grafico de pizza: uma linha por fatia, com cor, rotulo, valor e percentual.
 @Composable
 fun LegendaGrafico(
     fatias: List<FatiaGrafico>,
@@ -44,7 +43,6 @@ fun LegendaGrafico(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Quadradinho colorido representando a fatia
                 Box(
                     modifier = Modifier
                         .size(12.dp)

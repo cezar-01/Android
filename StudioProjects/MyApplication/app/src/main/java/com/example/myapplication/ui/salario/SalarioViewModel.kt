@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-// Estado da tela de salario: nome, salario digitado e possiveis erros de validacao
 data class SalarioUiState(
     val nome: String = "",
     val salarioTexto: String = "",
@@ -29,7 +28,6 @@ class SalarioViewModel(private val repositorio: FinancasRepository) : ViewModel(
     val uiState: StateFlow<SalarioUiState> = _uiState.asStateFlow()
 
     init {
-        // Se ja existe um perfil configurado no repositorio, pre-preenche os campos
         val perfil = repositorio.perfil.value
         if (perfil.configurado) {
             _uiState.update {
@@ -42,12 +40,10 @@ class SalarioViewModel(private val repositorio: FinancasRepository) : ViewModel(
     }
 
     fun aoMudarNome(valor: String) {
-        // Limpa o erro de nome assim que o usuario digita novamente
         _uiState.update { it.copy(nome = valor, erroNome = null) }
     }
 
     fun aoMudarSalario(valor: String) {
-        // Limpa o erro de salario assim que o usuario digita novamente
         _uiState.update { it.copy(salarioTexto = valor, erroSalario = null) }
     }
 

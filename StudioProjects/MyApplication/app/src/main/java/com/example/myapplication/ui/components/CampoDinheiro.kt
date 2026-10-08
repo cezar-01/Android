@@ -10,8 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 
-// Campo de texto para valores em dinheiro: mostra "R$" na frente e so aceita
-// digitos, virgula e ponto, limitando o tamanho para nao deixar o usuario digitar bobagem.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CampoDinheiro(

@@ -22,8 +22,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.util.formatarMoeda
 
-// Grafico de barras horizontais, empilhadas verticalmente numa Column.
-// Cada linha mostra o rotulo e o valor, e abaixo o trilho da barra proporcional ao maior valor.
 @Composable
 fun GraficoBarras(
     barras: List<BarraGrafico>,
@@ -40,10 +38,8 @@ fun GraficoBarras(
         return
     }
 
-    // Evita divisao por zero quando todos os valores forem 0.
     val maior = barras.maiorValor()
 
-    // Se a lista for grande, limitamos a altura total e deixamos o pai rolar.
     val precisaLimitar = barras.size > 6
     val modificadorColuna = if (precisaLimitar) modifier.heightIn(max = alturaMaxima) else modifier
 
@@ -53,7 +49,6 @@ fun GraficoBarras(
             val fracaoAnimada by animateFloatAsState(targetValue = fracaoAlvo, label = "fracaoBarra")
 
             Column(modifier = Modifier.padding(vertical = 6.dp)) {
-                // Linha com rotulo (esquerda) e valor formatado (direita).
                 Box(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = barra.rotulo,
@@ -71,7 +66,6 @@ fun GraficoBarras(
                     )
                 }
 
-                // Trilho da barra com o preenchimento proporcional ao valor.
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()

@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.components.CampoDinheiro
 import com.example.myapplication.util.textoParaValor
 
-// Dialogo para criar uma nova meta (cofrinho/caixinha) com nome e valor alvo.
 @Composable
 fun DialogoNovaMeta(
     aoConfirmar: (nome: String, valorAlvo: Double) -> Unit,
@@ -25,7 +24,6 @@ fun DialogoNovaMeta(
     var nome by remember { mutableStateOf("") }
     var valorTexto by remember { mutableStateOf("") }
 
-    // So aceita criar a meta se o nome nao estiver vazio e o valor alvo for valido e positivo
     val alvo = textoParaValor(valorTexto)?.takeIf { it > 0.0 }
 
     AlertDialog(

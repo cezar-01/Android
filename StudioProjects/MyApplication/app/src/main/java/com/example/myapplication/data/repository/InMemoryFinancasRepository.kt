@@ -12,10 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.UUID
 
-/**
- * Implementacao de estudo: guarda tudo em memoria (os dados somem ao fechar o app).
- * Serve para o app rodar sozinho enquanto o banco externo nao existe.
- */
 class InMemoryFinancasRepository : FinancasRepository {
 
     private val _perfil = MutableStateFlow(PerfilFinanceiro())
@@ -34,7 +30,6 @@ class InMemoryFinancasRepository : FinancasRepository {
     override val depositos: StateFlow<List<Deposito>> = _depositos.asStateFlow()
 
     override suspend fun salvarPerfil(nome: String, salarioMensal: Double) {
-        // copy() para nao apagar a foto de perfil ja escolhida.
         _perfil.update { it.copy(nome = nome.trim(), salarioMensal = salarioMensal) }
     }
 

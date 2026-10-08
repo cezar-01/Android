@@ -20,9 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-// Cartao generico usado em varias telas para agrupar um bloco de conteudo
-// com titulo, subtitulo opcional e uma acao opcional no cabecalho.
-// Componente burro: nao guarda estado nem tem regra de negocio.
 @Composable
 fun CartaoSecao(
     titulo: String,

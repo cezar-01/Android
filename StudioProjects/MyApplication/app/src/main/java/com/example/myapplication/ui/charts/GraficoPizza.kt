@@ -26,10 +26,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.CalculadoraGastosTheme
 
-// Cor usada quando nao ha dados para desenhar (anel vazio).
 private val CorAnelVazio = Color(0xFFE0E0E0)
 
-// Donut chart simples desenhado a mao com Canvas, sem bibliotecas de grafico.
 @Composable
 fun GraficoPizza(
     fatias: List<FatiaGrafico>,
@@ -39,11 +37,9 @@ fun GraficoPizza(
     textoCentral: String? = null,
     rotuloCentral: String? = null
 ) {
-    // Filtra fatias invalidas (valor <= 0) e soma o total.
     val fatiasValidas = fatias.filter { it.valor > 0 }
     val total = fatiasValidas.sumOf { it.valor }
 
-    // Progresso da animacao de entrada: 0f -> 1f sempre que a lista de fatias mudar.
     var progressoAlvo by remember { mutableFloatStateOf(0f) }
     LaunchedEffect(fatias) {
         progressoAlvo = 0f
@@ -58,7 +54,6 @@ fun GraficoPizza(
             val tamanhoArco = Size(size.width - larguraTraco, size.height - larguraTraco)
 
             if (total <= 0.0 || fatiasValidas.isEmpty()) {
-                // Sem dados: apenas um anel cinza claro completo.
                 drawArc(
                     color = CorAnelVazio,
                     startAngle = -90f,
@@ -69,7 +64,6 @@ fun GraficoPizza(
                     size = tamanhoArco
                 )
             } else {
-                // Pequeno respiro entre fatias quando ha mais de uma.
                 val respiro = if (fatiasValidas.size > 1) 1.5f else 0f
                 var anguloInicial = -90f
                 for (fatia in fatiasValidas) {
@@ -85,13 +79,11 @@ fun GraficoPizza(
                         topLeft = topLeft,
                         size = tamanhoArco
                     )
-                    // Acumula o angulo com o valor cheio (nao o animado) para manter as fatias no lugar certo.
                     anguloInicial += fracao * 360f
                 }
             }
         }
 
-        // Texto central sobreposto ao anel.
         if (textoCentral != null) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(

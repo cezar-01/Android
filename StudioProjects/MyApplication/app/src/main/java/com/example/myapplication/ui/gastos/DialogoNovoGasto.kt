@@ -27,7 +27,6 @@ import com.example.myapplication.data.model.TipoGasto
 import com.example.myapplication.ui.components.CampoDinheiro
 import com.example.myapplication.util.textoParaValor
 
-// Dialogo para lancar um novo gasto: descricao, valor, tipo (categoria) e subdivisao.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DialogoNovoGasto(
@@ -40,10 +39,8 @@ fun DialogoNovoGasto(
     var tipoSelecionado by remember { mutableStateOf(TipoGasto.VARIAVEL) }
     var subcategoriaSelecionadaId by remember { mutableStateOf<String?>(null) }
 
-    // Valor numerico valido (maior que zero) digitado pelo usuario.
     val valorValido = textoParaValor(valorTexto)?.takeIf { it > 0.0 }
 
-    // Apenas as subcategorias do tipo escolhido aparecem para selecao.
     val subcategoriasFiltradas = subcategorias.filter { it.tipo == tipoSelecionado }
 
     AlertDialog(
@@ -77,7 +74,6 @@ fun DialogoNovoGasto(
                             selected = tipo == tipoSelecionado,
                             onClick = {
                                 tipoSelecionado = tipo
-                                // Troca de categoria invalida a subcategoria escolhida antes.
                                 subcategoriaSelecionadaId = null
                             },
                             label = { Text(tipo.rotulo) }
@@ -92,7 +88,6 @@ fun DialogoNovoGasto(
                         style = MaterialTheme.typography.bodySmall
                     )
                 } else {
-                    // LazyRow evita a API experimental extra do FlowRow.
                     LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         items(subcategoriasFiltradas) { subcategoria ->
                             FilterChip(

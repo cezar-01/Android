@@ -49,24 +49,18 @@ import coil.compose.AsyncImage
 import com.example.myapplication.ui.components.CartaoSecao
 import com.example.myapplication.ui.components.CampoDinheiro
 
-/**
- * Aba de Perfil: o usuario troca o nome, o salario mensal e escolhe uma foto da galeria.
- * Nao e um cadastro nem login, e so a identificacao simples usada no dashboard.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PerfilScreen(viewModel: PerfilViewModel = viewModel(factory = PerfilViewModel.Factory)) {
     val estado by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    // Photo Picker do Android: nao precisa de permissao de armazenamento.
     val selecionarFoto = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) viewModel.definirFoto(uri.toString())
     }
 
-    // Mostra a confirmacao uma unica vez e avisa o ViewModel para limpar a mensagem.
     LaunchedEffect(estado.mensagem) {
         val mensagem = estado.mensagem
         if (mensagem != null) {
@@ -149,7 +143,6 @@ fun PerfilScreen(viewModel: PerfilViewModel = viewModel(factory = PerfilViewMode
     }
 }
 
-/** Foto redonda do usuario; sem foto, mostra um avatar padrao com icone de pessoa. */
 @Composable
 private fun AvatarPerfil(fotoUri: String?, modifier: Modifier = Modifier) {
     Box(

@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-// Estado vazio: usado quando uma lista ou secao ainda nao tem dados para mostrar.
 @Composable
 fun EstadoVazio(
     icone: ImageVector,

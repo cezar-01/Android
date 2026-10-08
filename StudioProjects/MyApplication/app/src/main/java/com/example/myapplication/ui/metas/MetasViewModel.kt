@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// Estado da tela de metas: lista de metas e totais gerais do cofrinho
 data class MetasUiState(
     val metas: List<Meta> = emptyList(),
     val totalGuardado: Double = 0.0,
@@ -39,7 +38,6 @@ class MetasViewModel(private val repositorio: FinancasRepository) : ViewModel() 
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MetasUiState())
 
-    // Defesa simples: nome em branco ou valor invalido nao cria meta (a tela ja valida antes)
     fun criarMeta(nome: String, valorAlvo: Double) {
         if (nome.isBlank() || valorAlvo <= 0) return
         viewModelScope.launch {

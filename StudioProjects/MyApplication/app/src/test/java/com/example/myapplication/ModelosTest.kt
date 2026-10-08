@@ -6,7 +6,6 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-// Testes da data class Meta (calculos derivados: valorRestante, progresso, concluida)
 class ModelosTest {
 
     @Test

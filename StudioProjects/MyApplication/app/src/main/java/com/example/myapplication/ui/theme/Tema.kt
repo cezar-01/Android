@@ -13,15 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-/**
- * IMPORTANTE: cada papel do esquema precisa de uma cor PROPRIA.
- * O Material 3 descobre a cor do texto de um Card com `contentColorFor(containerColor)`,
- * que compara as cores por valor. Se `secondary` e `surfaceVariant` forem a mesma cor,
- * ele acha `secondary` primeiro e usa `onSecondary` (branco) dentro dos cards, deixando
- * o texto ilegivel. Por isso os tons abaixo sao todos distintos e cada "on*" e explicito.
- */
-
-// Esquema claro: fundo areia, cartoes quase brancos com texto escuro.
 private val EsquemaClaro = lightColorScheme(
     primary = VerdeEscuro,
     onPrimary = Color(0xFFFFFFFF),
@@ -42,7 +33,6 @@ private val EsquemaClaro = lightColorScheme(
     onError = Color(0xFFFFFFFF)
 )
 
-// Esquema escuro: fundo verde-petroleo bem escuro, cartoes um tom acima do fundo.
 private val EsquemaEscuro = darkColorScheme(
     primary = VerdeClaro,
     onPrimary = Color(0xFF07281A),
@@ -63,8 +53,6 @@ private val EsquemaEscuro = darkColorScheme(
     onError = Color(0xFF3A0906)
 )
 
-// Tema principal do app. Nao usamos dynamicColor para manter a identidade visual
-// propria da Calculadora de Gastos em qualquer versao do Android.
 @Composable
 fun CalculadoraGastosTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

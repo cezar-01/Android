@@ -44,7 +44,6 @@ import com.example.myapplication.util.formatarData
 import com.example.myapplication.util.formatarMoeda
 import com.example.myapplication.util.formatarPercentual
 
-// Tela principal de lancamento e listagem de gastos, agrupados por tipo.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewModel.Factory)) {
@@ -72,7 +71,6 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // Cabecalho com o total gasto e a fatia do salario que ele representa.
             item {
                 CartaoSecao(titulo = "Total gasto") {
                     Text(
@@ -91,7 +89,6 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
                 }
             }
 
-            // Botao para criar uma nova subcategoria (subdivisao) de gastos.
             item {
                 OutlinedButton(
                     onClick = { mostrarDialogoSubcategoria = true },
@@ -103,7 +100,6 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
                 }
             }
 
-            // Um cartao por tipo de gasto (Fixos, Variaveis, Investimentos).
             items(estado.grupos) { grupo ->
                 CartaoSecao(
                     titulo = grupo.tipo.rotulo,
@@ -161,7 +157,6 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
     }
 }
 
-// Uma linha de gasto: descricao + subcategoria/data de um lado, valor + lixeira do outro.
 @Composable
 private fun LinhaItemGasto(item: ItemGasto, aoRemover: () -> Unit) {
     Row(

@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-// Resumo de um tipo de gasto (Fixo, Variavel, Investimento) para os graficos do dashboard.
 data class ResumoTipo(
     val tipo: TipoGasto,
     val total: Double,
@@ -21,7 +20,6 @@ data class ResumoTipo(
     val percentualDoSalario: Float
 )
 
-// Resumo de uma subcategoria, usado no ranking das maiores subdivisoes.
 data class ResumoSubcategoria(
     val nome: String,
     val tipo: TipoGasto,
@@ -42,8 +40,6 @@ data class DashboardUiState(
     val temGastos: Boolean = false
 )
 
-// ViewModel do dashboard: junta perfil, gastos, subcategorias e metas para montar os
-// numeros e graficos da tela principal.
 class DashboardViewModel(private val repositorio: FinancasRepository) : ViewModel() {
 
     val uiState: StateFlow<DashboardUiState> = combine(
@@ -56,10 +52,8 @@ class DashboardViewModel(private val repositorio: FinancasRepository) : ViewMode
         val totalGasto = gastos.sumOf { it.valor }
         val saldo = salario - totalGasto
 
-        // Nao limitamos a 1f de proposito: a tela precisa avisar quando passar de 100%.
         val percentualComprometido = if (salario > 0) (totalGasto / salario).toFloat() else 0f
 
-        // Resumo por tipo, sempre os 3 valores do enum, na ordem declarada.
         val porTipo = TipoGasto.values().map { tipo ->
             val totalDoTipo = gastos.filter { it.tipo == tipo }.sumOf { it.valor }
             val percentualDoTotal = if (totalGasto == 0.0) 0f else (totalDoTipo / totalGasto).toFloat()
@@ -75,7 +69,6 @@ class DashboardViewModel(private val repositorio: FinancasRepository) : ViewMode
         val totalInvestido = porTipo.firstOrNull { it.tipo == TipoGasto.INVESTIMENTO }?.total ?: 0.0
         val totalGuardadoEmMetas = metas.sumOf { it.valorGuardado }
 
-        // Agrupa os gastos por subcategoria, resolve o nome e ordena do maior para o menor.
         val topSubcategorias = gastos
             .groupBy { it.subcategoriaId }
             .map { (subcategoriaId, gastosDaSubcategoria) ->

@@ -15,27 +15,20 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class PerfilUiState(
-    /** Rascunhos editados na tela; so vao para o repositorio quando o usuario salva. */
     val nome: String = "",
     val salarioTexto: String = "",
     val fotoUri: String? = null,
     val erroNome: String? = null,
     val erroSalario: String? = null,
-    /** Mensagem de confirmacao mostrada uma vez e depois limpa pela tela. */
     val mensagem: String? = null
 )
 
-/**
- * ViewModel da aba Perfil. Nome e salario sao rascunhos locais (so gravam no botao Salvar),
- * enquanto a foto vem direto do repositorio, porque a troca de foto e imediata.
- */
 class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PerfilUiState())
     val uiState = _uiState.asStateFlow()
 
     init {
-        // Valores iniciais vem do que ja foi cadastrado na primeira tela do app.
         val perfilAtual = repositorio.perfil.value
         _uiState.update {
             it.copy(
@@ -44,7 +37,6 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
                 fotoUri = perfilAtual.fotoUri
             )
         }
-        // A foto continua sendo observada para a tela nunca ficar desatualizada.
         viewModelScope.launch {
             repositorio.perfil.collect { perfil ->
                 _uiState.update { it.copy(fotoUri = perfil.fotoUri) }
@@ -60,10 +52,6 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
         _uiState.update { it.copy(salarioTexto = valor, erroSalario = null) }
     }
 
-    /**
-     * Grava nome e salario de uma vez. Usa salvarPerfil(), que faz copy() no perfil e
-     * por isso preserva a foto ja escolhida.
-     */
     fun salvar() {
         val nome = _uiState.value.nome.trim()
         val salario = textoParaValor(_uiState.value.salarioTexto)
@@ -102,7 +90,6 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
         }
     }
 
-    /** A tela chama isso depois de exibir a mensagem, para ela nao aparecer de novo. */
     fun mensagemMostrada() {
         _uiState.update { it.copy(mensagem = null) }
     }

@@ -10,8 +10,6 @@ import androidx.compose.ui.Modifier
 import com.example.myapplication.ui.navigation.AppNavHost
 import com.example.myapplication.ui.theme.CalculadoraGastosTheme
 
-// Esta Activity apenas hospeda a arvore Compose do app; toda a navegacao e as
-// telas vivem dentro de AppNavHost.
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

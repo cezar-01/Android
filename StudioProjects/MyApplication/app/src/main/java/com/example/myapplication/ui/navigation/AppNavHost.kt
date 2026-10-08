@@ -20,14 +20,11 @@ import com.example.myapplication.ui.metas.MetasScreen
 import com.example.myapplication.ui.perfil.PerfilScreen
 import com.example.myapplication.ui.salario.SalarioScreen
 
-// Ponto central de navegacao do app: decide quais telas existem e quando a barra
-// inferior deve aparecer.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavHost() {
     val navController = rememberNavController()
 
-    // Observa a rota atual para saber se a barra inferior deve ser exibida.
     val backStackEntry by navController.currentBackStackEntryAsState()
     val rotaAtual = backStackEntry?.destination?.route
     val mostrarBarraInferior = rotaAtual == Rotas.GASTOS ||

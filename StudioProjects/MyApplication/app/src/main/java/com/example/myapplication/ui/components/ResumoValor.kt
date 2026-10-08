@@ -15,8 +15,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-// "Stat tile": rotulo pequeno em cima, valor grande em negrito embaixo e um
-// detalhe opcional ainda menor. O valor ja chega formatado de quem chama.
 @Composable
 fun ResumoValor(
     rotulo: String,

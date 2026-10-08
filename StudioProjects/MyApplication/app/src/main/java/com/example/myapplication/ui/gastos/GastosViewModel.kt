@@ -16,10 +16,8 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// Um gasto ja pronto pra tela, com o nome da subcategoria resolvido (evita buscar toda hora no Compose).
 data class ItemGasto(val gasto: Gasto, val nomeSubcategoria: String)
 
-// Agrupamento dos gastos por tipo (Fixos, Variaveis, Investimentos) com o total ja somado.
 data class GrupoGastos(val tipo: TipoGasto, val total: Double, val itens: List<ItemGasto>)
 
 data class GastosUiState(
@@ -29,8 +27,6 @@ data class GastosUiState(
     val salario: Double = 0.0
 )
 
-// Este ViewModel apenas transforma os Flows do repositorio em estado de UI.
-// A tela nunca fala com o repositorio diretamente, so observa o uiState e chama estas funcoes.
 class GastosViewModel(private val repositorio: FinancasRepository) : ViewModel() {
 
     val uiState: StateFlow<GastosUiState> = combine(
@@ -38,7 +34,6 @@ class GastosViewModel(private val repositorio: FinancasRepository) : ViewModel()
         repositorio.subcategorias,
         repositorio.perfil
     ) { gastos, subs, perfil ->
-        // Monta sempre os 3 grupos, na ordem do enum, mesmo que algum fique vazio.
         val grupos = TipoGasto.values().map { tipo ->
             val itensDoTipo = gastos
                 .filter { it.tipo == tipo }

@@ -17,7 +17,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.data.model.TipoGasto
 
-// Dialogo para criar uma nova subdivisao (categoria detalhada) dentro de um dos 3 tipos de gasto.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DialogoNovaSubcategoria(

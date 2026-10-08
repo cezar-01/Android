@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.components.CampoDinheiro
 import com.example.myapplication.util.textoParaValor
 
-// Dialogo usado para guardar ou retirar dinheiro de uma meta (cofrinho).
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DialogoGuardarDinheiro(
@@ -30,7 +29,6 @@ fun DialogoGuardarDinheiro(
     var ehDeposito by remember { mutableStateOf(true) }
     var valorTexto by remember { mutableStateOf("") }
 
-    // So habilita o botao de confirmar se o valor digitado for valido e positivo
     val valor = textoParaValor(valorTexto)?.takeIf { it > 0.0 }
 
     AlertDialog(

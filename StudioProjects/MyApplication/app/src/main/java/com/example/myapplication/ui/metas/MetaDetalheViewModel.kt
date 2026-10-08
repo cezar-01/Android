@@ -15,10 +15,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// Estado da tela de detalhe: a meta em si e o historico de movimentacoes dela.
 data class MetaDetalheUiState(
     val meta: Meta? = null,
-    val movimentacoes: List<Deposito> = emptyList() // mais recentes primeiro
+    val movimentacoes: List<Deposito> = emptyList()
 )
 
 class MetaDetalheViewModel(
@@ -36,14 +35,12 @@ class MetaDetalheViewModel(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MetaDetalheUiState())
 
-    // Guarda dinheiro na meta atual.
     fun guardar(valor: Double) {
         viewModelScope.launch {
             repositorio.depositarNaMeta(metaId, valor)
         }
     }
 
-    // Retira dinheiro da meta atual.
     fun retirar(valor: Double) {
         viewModelScope.launch {
             repositorio.retirarDaMeta(metaId, valor)

@@ -5,7 +5,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 
-// Testes de textoParaValor. formatarMoeda nao e testado aqui pois depende do locale da JVM.
 class FormatadoresTest {
 
     @Test
