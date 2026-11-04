@@ -30,17 +30,17 @@ fun DialogoNovaSubcategoria(
 
     AlertDialog(
         onDismissRequest = aoFechar,
-        title = { Text("Nova subdivisao") },
+        title = { Text("Nova subdivisão") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    "Subdivisoes sao as categorias detalhadas dentro de Fixos, Variaveis e " +
+                    "Subdivisões são as categorias detalhadas dentro de Fixos, Variáveis e " +
                         "Investimentos (ex.: Lazer, Alimentação, Poupança)."
                 )
                 OutlinedTextField(
                     value = nome,
                     onValueChange = { nome = it },
-                    label = { Text("Nome da subdivisao") },
+                    label = { Text("Nome da subdivisão") },
                     singleLine = true
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

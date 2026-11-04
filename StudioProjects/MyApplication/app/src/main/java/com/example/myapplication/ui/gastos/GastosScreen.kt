@@ -83,7 +83,7 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
                     if (estado.salario > 0) {
                         val fracao = (estado.totalGeral / estado.salario).toFloat()
                         Text(
-                            text = "${formatarPercentual(fracao)} do seu salario de ${formatarMoeda(estado.salario)}",
+                            text = "${formatarPercentual(fracao)} do seu salário de ${formatarMoeda(estado.salario)}",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -99,7 +99,7 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
                 ) {
                     Icon(Icons.Default.Add, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Nova subdivisao")
+                    Text("Nova subdivisão")
                 }
             }
 
@@ -118,7 +118,7 @@ fun GastosScreen(viewModel: GastosViewModel = viewModel(factory = GastosViewMode
                 ) {
                     if (grupo.itens.isEmpty()) {
                         Text(
-                            text = "Nenhum gasto lancado aqui ainda.",
+                            text = "Nenhum gasto lançado aqui ainda.",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

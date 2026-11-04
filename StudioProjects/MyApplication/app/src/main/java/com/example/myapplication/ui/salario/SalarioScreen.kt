@@ -70,8 +70,8 @@ fun SalarioScreen(
         androidx.compose.foundation.layout.Spacer(modifier = Modifier.padding(top = 8.dp))
 
         Text(
-            text = "Organize seus gastos em Fixos, Variaveis e Investimentos, e " +
-                "compare tudo com o seu salario mensal.",
+            text = "Organize seus gastos em Fixos, Variáveis e Investimentos, e " +
+                "compare tudo com o seu salário mensal.",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
@@ -96,7 +96,7 @@ fun SalarioScreen(
         CampoDinheiro(
             valor = estado.salarioTexto,
             aoMudar = viewModel::aoMudarSalario,
-            rotulo = "Salario mensal",
+            rotulo = "Salário mensal",
             erro = estado.erroSalario,
             modifier = Modifier.fillMaxWidth()
         )
@@ -104,8 +104,8 @@ fun SalarioScreen(
         androidx.compose.foundation.layout.Spacer(modifier = Modifier.padding(top = 8.dp))
 
         Text(
-            text = "O salario e a base dos percentuais mostrados no dashboard. " +
-                "Voce pode alterar esse valor depois.",
+            text = "O salário é a base dos percentuais mostrados no dashboard. " +
+                "Você pode alterar esse valor depois na aba Perfil.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
@@ -117,7 +117,7 @@ fun SalarioScreen(
             onClick = { viewModel.salvar() },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Comecar")
+            Text("Começar")
         }
     }
 }

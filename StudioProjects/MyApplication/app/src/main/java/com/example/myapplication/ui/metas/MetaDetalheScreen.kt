@@ -69,7 +69,7 @@ fun MetaDetalheScreen(
         if (meta == null) {
             EstadoVazio(
                 icone = Icons.Default.SearchOff,
-                titulo = "Meta nao encontrada",
+                titulo = "Meta não encontrada",
                 mensagem = "Essa meta pode ter sido removida.",
                 modifier = Modifier
                     .fillMaxSize()
@@ -129,10 +129,10 @@ fun MetaDetalheScreen(
                     Text(text = "  Guardar dinheiro")
                 }
 
-                CartaoSecao(titulo = "Historico") {
+                CartaoSecao(titulo = "Histórico") {
                     if (estado.movimentacoes.isEmpty()) {
                         Text(
-                            text = "Nenhuma movimentacao ainda.",
+                            text = "Nenhuma movimentação ainda.",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     } else {

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.myapplication.data.repository.FinancasRepository
 import com.example.myapplication.di.AppContainer
 import com.example.myapplication.util.textoParaValor
+import com.example.myapplication.util.valorParaTexto
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,7 +36,7 @@ class SalarioViewModel(private val repositorio: FinancasRepository) : ViewModel(
             _uiState.update {
                 it.copy(
                     nome = perfil.nome,
-                    salarioTexto = perfil.salarioMensal.toString()
+                    salarioTexto = valorParaTexto(perfil.salarioMensal)
                 )
             }
         }
@@ -58,8 +59,8 @@ class SalarioViewModel(private val repositorio: FinancasRepository) : ViewModel(
 
         val valor = textoParaValor(estadoAtual.salarioTexto)
         val erroSalario = when {
-            valor == null -> "Valor invalido"
-            valor <= 0 -> "O salario precisa ser maior que zero"
+            valor == null -> "Valor inválido"
+            valor <= 0 -> "O salário precisa ser maior que zero"
             else -> null
         }
 

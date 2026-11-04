@@ -11,7 +11,7 @@ package com.example.myapplication.data.model
 /** As tres grandes divisoes de gastos pedidas no projeto. */
 enum class TipoGasto(val rotulo: String) {
     FIXO("Fixos"),
-    VARIAVEL("Variaveis"),
+    VARIAVEL("Variáveis"),
     INVESTIMENTO("Investimentos");
 
     companion object {

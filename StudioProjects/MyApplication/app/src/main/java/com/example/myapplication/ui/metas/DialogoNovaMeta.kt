@@ -34,8 +34,8 @@ fun DialogoNovaMeta(
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    "Crie uma caixinha para guardar dinheiro aos poucos ate juntar o valor " +
-                        "que voce precisa para o seu objetivo.",
+                    "Crie uma caixinha para guardar dinheiro aos poucos até juntar o valor " +
+                        "que você precisa para o seu objetivo.",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 OutlinedTextField(

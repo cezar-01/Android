@@ -55,17 +55,17 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             // Saudacao com o nome, se cadastrado
-            val saudacao = if (estado.nome.isNotBlank()) "Ola, ${estado.nome}!" else "Resumo financeiro"
+            val saudacao = if (estado.nome.isNotBlank()) "Olá, ${estado.nome}!" else "Resumo financeiro"
             Text(text = saudacao, style = MaterialTheme.typography.headlineSmall)
 
             // Bloco 1: resumo do mes (salario, total gasto, saldo)
-            CartaoSecao(titulo = "Resumo do mes") {
+            CartaoSecao(titulo = "Resumo do mês") {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ResumoValor(
-                        rotulo = "Salario",
+                        rotulo = "Salário",
                         valor = formatarMoeda(estado.salario),
                         modifier = Modifier.weight(1f)
                     )
@@ -84,19 +84,19 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
             }
 
             // Bloco 2: quanto do salario ja foi comprometido com gastos
-            CartaoSecao(titulo = "Quanto do salario ja foi comprometido") {
+            CartaoSecao(titulo = "Quanto do salário já foi comprometido") {
                 if (estado.salario <= 0) {
-                    Text("Cadastre seu salario para ver essa relacao.")
+                    Text("Cadastre seu salário para ver essa relação.")
                 } else {
                     val estourou = estado.percentualComprometido > 1f
                     BarraProgresso(
                         progresso = estado.percentualComprometido,
                         cor = if (estourou) VermelhoAlerta else MaterialTheme.colorScheme.primary
                     )
-                    Text(text = "${formatarPercentual(estado.percentualComprometido)} do salario")
+                    Text(text = "${formatarPercentual(estado.percentualComprometido)} do salário")
                     if (estourou) {
                         Text(
-                            text = "Atencao: seus gastos passaram do salario!",
+                            text = "Atenção: seus gastos passaram do salário!",
                             color = VermelhoAlerta
                         )
                     }
@@ -108,7 +108,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                 EstadoVazio(
                     icone = Icons.Default.PieChart,
                     titulo = "Sem gastos ainda",
-                    mensagem = "Cadastre gastos na aba Gastos para ver os graficos aqui."
+                    mensagem = "Cadastre gastos na aba Gastos para ver os gráficos aqui."
                 )
             } else {
                 // Bloco 3: gastos por categoria (pizza + legenda)
@@ -132,14 +132,14 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                     // Percentual do salario comprometido por cada tipo de gasto
                     estado.porTipo.forEach { resumo ->
                         Text(
-                            text = "${resumo.tipo.rotulo} consomem ${formatarPercentual(resumo.percentualDoSalario)} do salario",
+                            text = "${resumo.tipo.rotulo} consomem ${formatarPercentual(resumo.percentualDoSalario)} do salário",
                             style = MaterialTheme.typography.bodySmall
                         )
                     }
                 }
 
                 // Bloco 4: maiores subdivisoes (barras horizontais)
-                CartaoSecao(titulo = "Maiores subdivisoes") {
+                CartaoSecao(titulo = "Maiores subdivisões") {
                     val barras = estado.topSubcategorias.mapIndexed { i, subcategoria ->
                         BarraGrafico(
                             rotulo = subcategoria.nome,
@@ -156,7 +156,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel(factory = Dashboar
                 ResumoValor(
                     rotulo = "Total no cofrinho",
                     valor = formatarMoeda(estado.totalGuardadoEmMetas),
-                    detalhe = "Investimentos lancados: " + formatarMoeda(estado.totalInvestido)
+                    detalhe = "Investimentos lançados: " + formatarMoeda(estado.totalInvestido)
                 )
             }
         }

@@ -128,12 +128,12 @@ fun PerfilScreen(viewModel: PerfilViewModel = viewModel(factory = PerfilViewMode
                 CampoDinheiro(
                     valor = estado.salarioTexto,
                     aoMudar = viewModel::aoMudarSalario,
-                    rotulo = "Salario mensal",
+                    rotulo = "Salário mensal",
                     erro = estado.erroSalario,
                     modifier = Modifier.fillMaxWidth()
                 )
                 Text(
-                    text = "Mudar o salario recalcula na hora os percentuais do dashboard.",
+                    text = "Mudar o salário recalcula na hora os percentuais do dashboard.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -142,7 +142,7 @@ fun PerfilScreen(viewModel: PerfilViewModel = viewModel(factory = PerfilViewMode
                     onClick = { viewModel.salvar() },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Salvar alteracoes")
+                    Text("Salvar alterações")
                 }
             }
         }

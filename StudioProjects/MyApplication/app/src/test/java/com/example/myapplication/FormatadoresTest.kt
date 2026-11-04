@@ -35,4 +35,22 @@ class FormatadoresTest {
         val resultado = textoParaValor("10")
         assertEquals(10.0, resultado!!, 0.001)
     }
+
+    @Test
+    fun `textoParaValor aceita ponto como separador decimal`() {
+        val resultado = textoParaValor("1234.56")
+        assertEquals(1234.56, resultado!!, 0.001)
+    }
+
+    @Test
+    fun `textoParaValor trata ponto seguido de 3 digitos como milhar`() {
+        val resultado = textoParaValor("1.234")
+        assertEquals(1234.0, resultado!!, 0.001)
+    }
+
+    @Test
+    fun `textoParaValor converte milhoes com varios pontos de milhar`() {
+        val resultado = textoParaValor("1.234.567,89")
+        assertEquals(1234567.89, resultado!!, 0.001)
+    }
 }

@@ -59,7 +59,7 @@ fun DialogoNovoGasto(
                 OutlinedTextField(
                     value = descricao,
                     onValueChange = { descricao = it },
-                    label = { Text("Descricao (opcional)") },
+                    label = { Text("Descrição (opcional)") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -85,10 +85,10 @@ fun DialogoNovoGasto(
                     }
                 }
 
-                Text("Subdivisao", style = MaterialTheme.typography.labelMedium)
+                Text("Subdivisão", style = MaterialTheme.typography.labelMedium)
                 if (subcategoriasFiltradas.isEmpty()) {
                     Text(
-                        "Nenhuma subdivisao para esta categoria ainda. Crie uma nova subdivisao antes de continuar.",
+                        "Nenhuma subdivisão para esta categoria ainda. Crie uma nova subdivisão antes de continuar.",
                         style = MaterialTheme.typography.bodySmall
                     )
                 } else {

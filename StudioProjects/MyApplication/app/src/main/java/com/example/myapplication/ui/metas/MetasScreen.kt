@@ -75,7 +75,7 @@ fun MetasScreen(
                 EstadoVazio(
                     icone = Icons.Default.Savings,
                     titulo = "Nenhuma meta ainda",
-                    mensagem = "Crie uma meta (ex.: Viagem de R$ 10.000) e va guardando dinheiro aos poucos."
+                    mensagem = "Crie uma meta (ex.: Viagem de R$ 10.000) e vá guardando dinheiro aos poucos."
                 )
             }
         } else {
@@ -143,7 +143,7 @@ fun MetasScreen(
 
                             if (meta.concluida) {
                                 Text(
-                                    text = "Meta concluida!",
+                                    text = "Meta concluída!",
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = VerdePositivo,
                                     modifier = Modifier.padding(top = 4.dp)

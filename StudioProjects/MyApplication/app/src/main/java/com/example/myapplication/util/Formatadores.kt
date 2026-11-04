@@ -26,10 +26,16 @@ fun textoParaValor(texto: String): Double? {
     val limpo = texto.trim()
         .replace("R$", "")
         .replace(" ", "")
-        .replace(".", "")
-        .replace(",", ".")
     if (limpo.isEmpty()) return null
-    return limpo.toDoubleOrNull()
+    val normalizado = when {
+        // Com virgula e o formato brasileiro: ponto e milhar, virgula e decimal.
+        limpo.contains(',') -> limpo.replace(".", "").replace(",", ".")
+        // Um unico ponto seguido de 1 ou 2 digitos e decimal (teclado numerico: "1500.50").
+        limpo.count { it == '.' } == 1 && limpo.substringAfter('.').length in 1..2 -> limpo
+        // Qualquer outro ponto e separador de milhar ("1.234", "1.234.567").
+        else -> limpo.replace(".", "")
+    }
+    return normalizado.toDoubleOrNull()
 }
 
 /**

@@ -70,8 +70,8 @@ class PerfilViewModel(private val repositorio: FinancasRepository) : ViewModel()
 
         val erroNome = if (nome.isBlank()) "Digite seu nome" else null
         val erroSalario = when {
-            salario == null -> "Valor invalido"
-            salario <= 0.0 -> "O salario precisa ser maior que zero"
+            salario == null -> "Valor inválido"
+            salario <= 0.0 -> "O salário precisa ser maior que zero"
             else -> null
         }
 
